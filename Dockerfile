@@ -1,10 +1,11 @@
-FROM node:6
+FROM node:6.3.0
 MAINTAINER Joao Cunha <joao.cunha@advertilemobile.com>
-
-RUN npm i -g 'raml2html/raml2html'
 
 WORKDIR /usr/src/app
 
-ONBUILD COPY . /usr/src/app
+COPY package.json npm-shrinkwrap.json /usr/src/app/
+RUN npm install
 
-CMD /usr/local/bin/raml2html api.raml > api.html
+ONBUILD COPY api.raml /usr/src/app/api.raml
+
+CMD /usr/src/app/node_modules/.bin/raml2html api.raml
