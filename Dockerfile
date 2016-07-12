@@ -8,4 +8,4 @@ RUN npm install
 
 ONBUILD COPY api.raml /usr/src/app/api.raml
 
-CMD /usr/src/app/node_modules/.bin/raml2html api.raml
+CMD /usr/src/app/node_modules/.bin/raml2html api.raml > /output/api.html
